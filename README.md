@@ -7,16 +7,16 @@ Vish is a graphical editor for creating and managing Bash scripts using a node-b
 - Intuitive drag-and-drop interface
 - Easy visualization of script flow and logic
 - Run generated Bash scripts directly from the editor
-- Save and load visual scripts in JSON format
+- Project system to create and manage multiple projects
 - Various user friendly features to enhance the scripting experience
-- Themes support (Light/Dark/Purple)
+- Themes support (Light/Dark/Purple/Breeze Dark)
 - Multi-language support
 - Settings to customize the editor behavior and appearance
 - Partial Windows support (some features may be limited or unavailable on Windows)
 
 ## Screenshots
 
-<img width="3072" height="1664" alt="Screenshot of Vish showing nodes and generated bash script with a script that call function that print the license file" src="https://github.com/Lluciocc/vish-utils/blob/main/screenshots/screenshots1.png" />
+<img width="3072" height="1664" Workflow management projectsalt="Screenshot of Vish showing nodes and generated bash script with a script that call function that print the license file" src="https://github.com/Lluciocc/vish-utils/blob/main/screenshots/screenshots1.png" />
 <img width="3072" height="1728" alt="Screenshot of Vish showing nodes and generated bash script with a simple script that tell if a number is odd or even" src="https://github.com/Lluciocc/vish-utils/blob/main/screenshots/screenshots2.png" />
 
 ## Notes
@@ -32,11 +32,6 @@ For more detailed information about Vish, including contribution instructions, u
 You can install Vish directly from Flathub:
 https://flathub.org/apps/io.github.lluciocc.Vish
 
-### From flatpak
-You can install Vish from a self hosted source using the following command:
-```bash 
-flatpak install --from https://flatpak.lluciocc.fr/vish.flatpakref
-```
 ### From AppImage
 You can download the latest AppImage from the [releases page](https://github.com/lluciocc/vish/releases/latest). After downloading, make the AppImage executable and run it:
 ```bash
