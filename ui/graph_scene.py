@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QGraphicsScene
 from PySide6.QtCore import Signal, QTimer
 from PySide6.QtGui import QCursor, QPen, QColor
-from core.debug import Debug
+from core.logger import Logger
 from ui import edge_item
 from ui.edge_item import EdgeItem
 from ui.port_item import PortItem
@@ -71,8 +71,11 @@ class GraphScene(QGraphicsScene):
     def finalize_connection(self, start_port, end_port):
         if not self.drag_edge:
             return
-
-        if not self._is_valid_connection(start_port, end_port):
+    
+        valid = self._is_valid_connection(start_port, end_port)
+        if Config.DEBUG:  
+            Logger.LogMessage(f"Connection valid? {valid}")
+        if not valid:
             self._show_invalid_feedback(start_port, end_port)
             return
 
@@ -106,11 +109,19 @@ class GraphScene(QGraphicsScene):
         self.pending_scene_pos = None
 
         def commit():
+            if Config.DEBUG:
+                Logger.LogMessage(f"COMMIT: {source_item.port.port_type} -> {target_item.port.port_type}")
+
             edge = self.graph.add_edge(source_item.port, target_item.port)
+
+            if Config.DEBUG:
+                Logger.LogMessage(f"GRAPH.ADD_EDGE returned: {edge}")
+
             if edge:
                 self.views()[0].add_edge_item(edge)
                 if Config.SYNC_NODES_AND_GEN:
                     self.graph_changed.emit()
+
             if edge_item.scene() is self:
                 self.removeItem(edge_item)
 
@@ -132,7 +143,7 @@ class GraphScene(QGraphicsScene):
         self.start_port = None
 
     def _show_invalid_feedback(self, a, b):
-        #Debug.Error("Invalid connection")
+        #Logger.Error("Invalid connection")
         edge = self.drag_edge
         if not edge:
             return
